@@ -6,22 +6,152 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --my_bg: #10100f;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  body {
+    @apply overflow-x-hidden;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* NOTE: DETAIL IMAGE SHADOW */
+
+.image_shadow {
+  position: relative;
+}
+
+.image_shadow::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -moz-box-shadow: inset 100px 0px 100px 5px var(--my_bg);
+  -webkit-box-shadow: inset 100px 0px 100px 5px var(--my_bg);
+  box-shadow: inset 400px -120px 500px 100px var(--my_bg),
+    0px 0px 100px 100px var(--my_bg);
+}
+
+.detail_image_shadow {
+  box-shadow: 52px -4px 49px 25px rgba(0, 0, 0, 0.75) inset;
+  -webkit-box-shadow: 52px -4px 49px 25px rgba(0, 0, 0, 0.75) inset;
+  -moz-box-shadow: 52px -4px 49px 25px rgba(0, 0, 0, 0.75) inset;
+}
+
+/* NOTE: BLUE THE BACKGROUND WHEN FORM APPEAR */
+.background_blur {
+  backdrop-filter: blur(2px);
+  background-color: #b6b2b269;
+}
+
+.scroll_btn_shadow {
+  box-shadow: 0px 0px 15px 20px #ffffffd2;
+}
+
+/* NOTE: LOADING SPINNER */
+.loading {
+  width: 40px;
+  height: 40px;
+  margin: 20px auto;
+  border: solid 3px #8822aa;
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  -webkit-transition: all 0.5s ease-in;
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+
+  transition: all 0.5s ease-in;
+  animation-name: rotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+/* NOTE: CUSTOMISE SCROLL BAR */
+/* WORK: CHANGE WIDTH OF SCROLL BAR */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+*::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+/* WORK: CHANGE BACKGROUND COLOR OF TRACK */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+*::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+
+/* WORK: CHANGE COLOR OF SCROLLBAR */
+::-webkit-scrollbar-thumb {
+  background: hsl(0, 3%, 75%); /* Thumb color */
+  border-radius: 6px; /* Roundness of the thumb */
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: hsl(0, 3%, 75%); /* Thumb color */
+  border-radius: 16px; /* Roundness of the thumb */
+}
+/* WORK: CHANGE COLOR OF SCROLLBAR ON HOVER */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Thumb color on hover */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: hsla(0, 2%, 39%, 0.63); /* Thumb color on hover */
+}
+
+* {
+  -ms-overflow-style: none; /* Hide the default scrollbar */
+}
+
+/* NOTE: HIDE THE DEFAULT SCROLLBAR BUT PERSIST VERTICAL SCROLLING */
+/* Hide the scrollbar in the container */
+.hide_scroll_bar::-webkit-scrollbar {
+  width: 0.01rem; /* Set a very small width for the scrollbar */
+}
+
+/* Optionally, you can style the scrollbar thumb for visual consistency */
+.hide_scroll_bar::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Make the thumb transparent */
+}
+
+/* Enable vertical scrolling for the hide_scroll_bar */
+.hide_scroll_bar {
+  overflow-y: scroll; /* Enable vertical scrolling */
+  scrollbar-width: thin; /* Firefox scrollbar width */
+  scrollbar-color: transparent transparent; /* Firefox thumb color */
+  /* Additional styles for the container go here */
 }
