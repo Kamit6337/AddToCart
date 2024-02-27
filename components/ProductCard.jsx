@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 
-const ProductCart = ({ product }) => {
+const ProductCard = ({ product }) => {
   const {
     _id,
     title,
@@ -43,4 +43,4 @@ const ProductCart = ({ product }) => {
   );
 };
 
-export default ProductCart;
+export default ProductCard;

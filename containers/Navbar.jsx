@@ -1,10 +1,10 @@
 const Navbar = () => {
   return (
-    <div className="h-full w-full border-b-2 flex justify-center items-center">
-      <p>AddToCart</p>
-      <p>Search Input</p>
-      <p>Profile</p>
-      <p>Cart</p>
+    <div className="h-full w-full flex items-center justify-center gap-8">
+      <p className="">AddToCart</p>
+      <p className="">Search Input</p>
+      <p className="">Profile</p>
+      <p className="">Cart</p>
     </div>
   );
 };
